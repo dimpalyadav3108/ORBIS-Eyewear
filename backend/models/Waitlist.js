@@ -1,0 +1,1 @@
+import mongoose from"mongoose";const s=new mongoose.Schema({product:{type:mongoose.Schema.Types.ObjectId,ref:"Product"},email:String},{timestamps:true});s.index({product:1,email:1},{unique:true});export default mongoose.model("Waitlist",s);

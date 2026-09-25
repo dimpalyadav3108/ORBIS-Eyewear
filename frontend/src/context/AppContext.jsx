@@ -1,0 +1,6 @@
+import React,{createContext,useContext,useEffect,useState} from "react";import {api} from "../services/api";
+const C=createContext(); export const useApp=()=>useContext(C);
+export function AppProvider({children}){const [user,setUser]=useState(null),[authReady,setAuthReady]=useState(false),[cart,setCart]=useState(()=>JSON.parse(localStorage.getItem("orbis_cart")||"[]")),[wish,setWish]=useState(()=>JSON.parse(localStorage.getItem("orbis_wish")||"[]")),[compare,setCompare]=useState([]);
+useEffect(()=>{api("/auth/me").then(x=>setUser(x.user)).catch(()=>setUser(null)).finally(()=>setAuthReady(true));},[]);useEffect(()=>localStorage.setItem("orbis_cart",JSON.stringify(cart)),[cart]);useEffect(()=>localStorage.setItem("orbis_wish",JSON.stringify(wish)),[wish]);
+const addCart=(p,custom={})=>setCart(x=>{const i=x.findIndex(v=>v.id===p.id&&JSON.stringify(v.custom)===JSON.stringify(custom));if(i<0)return[...x,{...p,qty:1,custom}];return x.map((v,n)=>n===i?{...v,qty:v.qty+1}:v)});const toggleWish=p=>setWish(x=>x.some(i=>i.id===p.id)?x.filter(i=>i.id!==p.id):[...x,p]);const logout=async()=>{await api("/auth/logout",{method:"POST"});setUser(null)};
+return <C.Provider value={{user,setUser,authReady,cart,setCart,wish,toggleWish,compare,setCompare,addCart,logout}}>{children}</C.Provider>}

@@ -1,0 +1,1 @@
+import mongoose from"mongoose";const s=new mongoose.Schema({ticketNo:String,user:{type:mongoose.Schema.Types.ObjectId,ref:"User"},email:String,orderNumber:String,type:String,message:String,photos:[String],status:{type:String,default:"open"},replies:[Object]},{timestamps:true});export default mongoose.model("Support",s);

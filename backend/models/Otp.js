@@ -1,0 +1,1 @@
+import mongoose from"mongoose";const s=new mongoose.Schema({target:String,codeHash:String,purpose:String,expiresAt:Date},{timestamps:true});s.index({expiresAt:1},{expireAfterSeconds:0});export default mongoose.model("Otp",s);

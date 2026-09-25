@@ -1,0 +1,2 @@
+import React from"react";import{Link}from"react-router-dom";import{useApp}from"../context/AppContext";import ProductCard from"../components/ProductCard";
+export default function Wishlist(){const{wish}=useApp();return <section className="section top"><small>MY ORBIS</small><h1>Saved for later.</h1>{wish.length?<div className="productGrid">{wish.map(p=><ProductCard p={p} key={p.id}/>)}</div>:<div className="emptyState"><span>♡</span><h2>Your wishlist is ready for a favourite.</h2><Link className="primary" to="/shop">Find a frame</Link></div>}</section>}

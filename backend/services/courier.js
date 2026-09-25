@@ -1,0 +1,1 @@
+export async function trackCourier(tracking){return{tracking,status:"In transit",events:[{status:"Picked up",at:new Date(Date.now()-86400000)},{status:"In transit",at:new Date()}],provider:process.env.COURIER_PROVIDER||"ORBIS Demo Courier",demo:!process.env.COURIER_API_KEY}}

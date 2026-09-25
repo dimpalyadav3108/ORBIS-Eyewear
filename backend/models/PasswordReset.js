@@ -1,0 +1,1 @@
+import mongoose from"mongoose";const s=new mongoose.Schema({user:{type:mongoose.Schema.Types.ObjectId,ref:"User"},tokenHash:String,expiresAt:Date},{timestamps:true});s.index({expiresAt:1},{expireAfterSeconds:0});export default mongoose.model("PasswordReset",s);

@@ -1,0 +1,3 @@
+import mongoose from"mongoose";
+const s=new mongoose.Schema({orderNumber:{type:String,unique:true},user:{type:mongoose.Schema.Types.ObjectId,ref:"User"},guest:Object,items:[Object],address:Object,subtotal:Number,shipping:Number,gst:Number,discount:Number,total:Number,coupon:String,paymentMethod:String,paymentStatus:{type:String,enum:["pending","cod_pending","paid","failed","refunded","partially_refunded"],default:"pending"},payment:{provider:String,orderId:String,paymentId:String,signature:String,verifiedAt:Date,refundId:String},status:{type:String,default:"Order received"},history:[Object],tracking:Object,onHold:Object,prescriptionStatus:{type:String,default:"pending"}},{timestamps:true});
+export default mongoose.model("Order",s);

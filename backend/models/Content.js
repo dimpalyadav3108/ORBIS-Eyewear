@@ -1,0 +1,1 @@
+import mongoose from"mongoose";const s=new mongoose.Schema({type:{type:String,default:"page"},slug:{type:String,unique:true},title:String,body:String,active:{type:Boolean,default:true},meta:Object},{timestamps:true});export default mongoose.model("Content",s);
